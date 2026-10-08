@@ -1,0 +1,466 @@
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Pinyon+Script&display=swap");
+
+:root {
+  --rosa-fundo: #eaacb4;
+  --rosa-logo: #874455;
+  --carmim: #8e3e52;
+  --ferrugem: #7a2f00;
+  --rosa-claro: #fbeff1;
+  --rosa-medio: #f4d6db;
+  --texto: #3a1e25;
+  --branco: #fffafb;
+  --titulo: "Fraunces", Georgia, serif;
+  --corpo: "Figtree", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--corpo);
+  color: var(--texto);
+  background: var(--rosa-claro);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--titulo);
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ferrugem);
+  outline-offset: 3px;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 0.75rem clamp(1rem, 5vw, 4rem);
+  background: rgba(251, 239, 241, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rosa-medio);
+}
+
+.marca {
+  font-family: var(--titulo);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--rosa-logo);
+  text-decoration: none;
+}
+
+.marca span {
+  font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--carmim);
+  margin-left: 0.1rem;
+}
+
+.topo nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+}
+
+.topo nav a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.topo nav a:not(.botao):hover {
+  color: var(--carmim);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  border: 2px solid var(--carmim);
+  border-radius: 999px;
+  background: var(--carmim);
+  color: var(--branco);
+  font: 600 1rem var(--corpo);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.botao:hover {
+  background: var(--ferrugem);
+  border-color: var(--ferrugem);
+}
+
+.botao.contorno {
+  background: transparent;
+  color: var(--rosa-logo);
+  border-color: var(--rosa-logo);
+}
+
+.botao.contorno:hover {
+  background: var(--rosa-logo);
+  color: var(--branco);
+}
+
+.botao.pequeno {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.95rem;
+  color: var(--branco);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--rosa-fundo);
+  padding: clamp(3rem, 9vw, 7rem) clamp(1rem, 5vw, 4rem);
+}
+
+.hero-conteudo {
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+.hero-logo {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+.hero-dmn {
+  display: block;
+  font-family: var(--titulo);
+  font-weight: 600;
+  font-size: clamp(5rem, 22vw, 15rem);
+  letter-spacing: -0.04em;
+  color: var(--rosa-logo);
+  line-height: 0.9;
+}
+
+.hero-tech {
+  position: absolute;
+  left: 22%;
+  bottom: -0.15em;
+  font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+  font-size: clamp(3rem, 13vw, 9rem);
+  color: var(--carmim);
+  line-height: 1;
+}
+
+.onda {
+  display: block;
+  width: min(34rem, 100%);
+  height: 2.5rem;
+  margin: 2rem 0 0.5rem;
+}
+
+.onda path {
+  fill: none;
+  stroke: var(--carmim);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: tracar 1.6s ease-out 0.2s forwards;
+}
+
+@keyframes tracar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.slogan {
+  font-family: var(--titulo);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  color: var(--ferrugem);
+  margin: 0 0 1rem;
+}
+
+.hero-texto {
+  max-width: 38rem;
+  font-size: 1.15rem;
+  margin: 0 0 2rem;
+}
+
+.hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ---------- Seções ---------- */
+.secao {
+  padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem);
+}
+
+.secao.alt {
+  background: var(--rosa-medio);
+}
+
+.miolo {
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+.miolo.estreito {
+  max-width: 38rem;
+}
+
+.secao h2 {
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  color: var(--rosa-logo);
+  max-width: 30rem;
+}
+
+.lead {
+  max-width: 40rem;
+  font-size: 1.1rem;
+  margin: 1rem 0 2.5rem;
+}
+
+/* Valores */
+.valores {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 2rem;
+}
+
+.valores li {
+  border-top: 3px solid var(--carmim);
+  padding-top: 1rem;
+}
+
+.valores h3 {
+  font-size: 1.35rem;
+  color: var(--carmim);
+  margin-bottom: 0.4rem;
+}
+
+.valores p {
+  margin: 0;
+}
+
+/* Equipe */
+.abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.aba {
+  padding: 0.6rem 1.1rem;
+  border: 2px solid var(--rosa-logo);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--rosa-logo);
+  font: 600 0.95rem var(--corpo);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.aba:hover {
+  background: var(--rosa-fundo);
+}
+
+.aba.ativa {
+  background: var(--rosa-logo);
+  color: var(--branco);
+}
+
+.painel {
+  background: var(--branco);
+  border-radius: 1rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.resumo {
+  font-family: var(--titulo);
+  font-size: 1.3rem;
+  margin: 0 0 1.5rem;
+  color: var(--ferrugem);
+}
+
+.papeis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 2rem;
+}
+
+.papeis h3 {
+  font-size: 1.15rem;
+  color: var(--carmim);
+  margin-bottom: 0.75rem;
+}
+
+.papeis ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.papeis li {
+  margin-bottom: 0.4rem;
+}
+
+.papeis li::marker {
+  color: var(--carmim);
+}
+
+/* Processo */
+.etapas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 1.5rem;
+  counter-reset: etapa;
+}
+
+.etapas li {
+  counter-increment: etapa;
+  position: relative;
+  padding-top: 2.75rem;
+}
+
+.etapas li::before {
+  content: counter(etapa);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--carmim);
+  color: var(--branco);
+  font-weight: 600;
+}
+
+.etapas li::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  left: 2.5rem;
+  right: 0;
+  height: 2px;
+  background: var(--rosa-fundo);
+}
+
+.etapas li:last-child::after {
+  display: none;
+}
+
+.etapas h3 {
+  font-size: 1.2rem;
+  color: var(--rosa-logo);
+  margin-bottom: 0.3rem;
+}
+
+.etapas p {
+  margin: 0;
+  font-size: 0.97rem;
+}
+
+/* Contato */
+.contato {
+  background: var(--rosa-fundo);
+}
+
+.contato h2 {
+  color: var(--ferrugem);
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  padding: 0.75rem 0.9rem;
+  border: 2px solid transparent;
+  border-radius: 0.6rem;
+  background: var(--branco);
+  font: 400 1rem var(--corpo);
+  color: var(--texto);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--carmim);
+  outline: none;
+}
+
+form .botao {
+  justify-self: start;
+}
+
+.aviso {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ferrugem);
+}
+
+/* Rodapé */
+.rodape {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding: 1.5rem clamp(1rem, 5vw, 4rem);
+  background: var(--rosa-logo);
+  color: var(--rosa-claro);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 40rem) {
+  .etapas li::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .onda path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
