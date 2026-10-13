@@ -1,7 +1,7 @@
 // Preencha estes campos quando os canais oficiais estiverem definidos.
 export const siteConfig = {
   whatsapp: '5562998086685',
-  email: '',
+  email: 'dmntech.solucoes@gmail.com',
   instagram: '',
   contactEndpoint: '', // URL HTTPS que recebe POST JSON do formulário
 }

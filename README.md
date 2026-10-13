@@ -12,8 +12,12 @@ Para gerar a versão de produção, execute `npm run build`; a saída ficará em
 
 ## Configurar canais e formulário
 
-O WhatsApp informado já está configurado em `src/config.ts`. Edite os campos `email` e `instagram` quando esses canais estiverem definidos. O formulário envia um POST JSON para `contactEndpoint`; configure-o com a URL HTTPS da integração escolhida. Sem endpoint configurado, o formulário informa claramente que ainda não está conectado e não simula um envio.
+O WhatsApp e o endereço `dmntech.solucoes@gmail.com` estão configurados em `src/config.ts`. Sem `contactEndpoint`, o formulário valida os campos e abre um rascunho no Gmail, endereçado a esse e-mail, com os dados preenchidos; a pessoa deve revisar e clicar em Enviar no Gmail. Para envio automático pelo site, configure um endpoint HTTPS seguro em `contactEndpoint` e mantenha as credenciais no servidor, nunca no frontend. O Instagram pode ser preenchido quando o perfil oficial estiver definido.
 
 ## Conteúdo demonstrativo
 
-Os cartões da seção Projetos são explicitamente marcados como demonstrativos. A lista de tecnologias é uma sugestão para projetos e deve ser ajustada às tecnologias confirmadas pela DMN Tech.
+Os exemplos da seção Projetos são identificados no texto da seção. A lista de tecnologias é uma sugestão para projetos e deve ser ajustada às tecnologias confirmadas pela DMN Tech.
+
+## Equipe
+
+A seção da equipe usa os retratos da imagem fornecida e apresenta nomes, funções e responsabilidades como texto responsivo para evitar cortes, incluindo o título completo de Nathália Rodrigues.
