@@ -1,273 +1,176 @@
-import { useState, type FormEvent } from "react";
-import "./App.css";
+import { useState, type FormEvent } from 'react'
+import {
+  ArrowDown, ArrowRight, ArrowUpRight, Bot, Braces, Check, ChevronDown,
+  Code2, Database, Layers3, Menu, MessageCircle, Monitor, Send, ShieldCheck,
+  Sparkles, Workflow, X,
+} from 'lucide-react'
+import { siteConfig, whatsappUrl } from './config'
 
-type Papel = {
-  titulo: string;
-  tarefas: string[];
-};
+const services = [
+  { icon: Monitor, number: '01', title: 'Desenvolvimento de sites', text: 'Experiências digitais rápidas, responsivas e feitas para representar sua marca com clareza.' },
+  { icon: Layers3, number: '02', title: 'Sistemas sob medida', text: 'Ferramentas que organizam operações, simplificam rotinas e acompanham o seu negócio.' },
+  { icon: Code2, number: '03', title: 'Software personalizado', text: 'Soluções digitais planejadas em torno dos seus processos e dos desafios reais da equipe.' },
+  { icon: Database, number: '04', title: 'Dashboards e dados', text: 'Indicadores e painéis para transformar informações em decisões mais bem orientadas.' },
+  { icon: Workflow, number: '05', title: 'Automação de processos', text: 'Integrações que reduzem tarefas repetitivas e conectam as ferramentas que você já usa.' },
+  { icon: Bot, number: '06', title: 'Inteligência artificial', text: 'Recursos inteligentes e assistentes digitais aplicados com propósito ao seu contexto.' },
+]
 
-type Integrante = {
-  nome: string;
-  resumo: string;
-  papeis: Papel[];
-};
+const values = ['Inovação', 'Compromisso', 'Qualidade', 'Transparência', 'Evolução contínua']
+const technologies = ['React', 'TypeScript', 'Node.js', 'Python', 'SQL', 'APIs REST', 'HTML5', 'CSS3']
+const steps = [
+  ['01', 'Entendimento', 'Escutamos suas necessidades, objetivos e desafios.'],
+  ['02', 'Planejamento', 'Definimos escopo, prioridades e a melhor abordagem.'],
+  ['03', 'Design & desenvolvimento', 'Construímos a solução com atenção a cada detalhe.'],
+  ['04', 'Testes & validação', 'Revisamos os fluxos junto com você antes da entrega.'],
+  ['05', 'Entrega & suporte', 'Publicamos o projeto e acompanhamos conforme contratado.'],
+]
 
-const integrantes: Integrante[] = [
-  {
-    nome: "Marcela Carneiro Mateus",
-    resumo: "Organiza o projeto do começo ao fim e mantém todo mundo alinhado.",
-    papeis: [
-      {
-        titulo: "Gerente de Projetos / Scrum Master",
-        tarefas: [
-          "Organizar o cronograma e os prazos das entregas",
-          "Distribuir e acompanhar as tarefas",
-          "Conduzir as reuniões rápidas da equipe",
-          "Acompanhar o quadro Kanban",
-          "Identificar possíveis atrasos e impedimentos",
-          "Acompanhar o cumprimento das demandas do cliente",
-        ],
-      },
-    ],
-  },
-  {
-    nome: "Nathália Rodrigues de Oliveira Silva",
-    resumo: "Orienta as decisões técnicas e participa da execução do código.",
-    papeis: [
-      {
-        titulo: "Líder Técnico / Especialista de Execução",
-        tarefas: [
-          "Definir, junto à equipe, as soluções técnicas",
-          "Orientar a implementação dos projetos",
-          "Verificar se as tecnologias utilizadas são adequadas",
-          "Apoiar os demais integrantes em dificuldades técnicas",
-          "Realizar testes durante o desenvolvimento",
-          "Avaliar a integração entre as partes da solução",
-        ],
-      },
-    ],
-  },
-  {
-    nome: "Danyella Vinhal",
-    resumo: "Garante que a solução funcione, siga as normas e esteja documentada.",
-    papeis: [
-      {
-        titulo: "Analista de Qualidade (QA) e Normas",
-        tarefas: [
-          "Realizar testes e identificar erros",
-          "Conferir se os requisitos do cliente foram atendidos",
-          "Verificar padrões e boas práticas",
-          "Registrar falhas e acompanhar as correções",
-          "Aprovar a versão final junto à equipe",
-        ],
-      },
-      {
-        titulo: "Analista de Documentação e Compliance",
-        tarefas: [
-          "Registrar as etapas do desenvolvimento",
-          "Organizar documentos, arquivos e versões",
-          "Elaborar e atualizar manuais de utilização",
-          "Organizar evidências e registros das entregas",
-          "Auxiliar na preparação das apresentações dos projetos",
-        ],
-      },
-    ],
-  },
-];
-
-const valores = [
-  { titulo: "Tecnologia", texto: "Ferramentas escolhidas para o problema do cliente, não o contrário." },
-  { titulo: "Qualidade", texto: "Testes e revisão antes de qualquer entrega." },
-  { titulo: "Praticidade", texto: "Soluções simples de usar, com manual atualizado." },
-  { titulo: "Bons resultados", texto: "Cada projeto é medido pelo que resolve para quem contratou." },
-];
-
-const etapas = [
-  { titulo: "Planejar", texto: "Prazos, tarefas e demandas do cliente organizados no quadro Kanban." },
-  { titulo: "Desenvolver", texto: "Todas as integrantes participam da programação e das decisões técnicas." },
-  { titulo: "Testar", texto: "Erros são registrados e corrigidos antes da entrega." },
-  { titulo: "Documentar", texto: "Etapas, decisões e manuais ficam registrados e versionados." },
-  { titulo: "Entregar", texto: "A versão final é aprovada em conjunto, com evidências da entrega." },
-];
-
-function classeAba(ativa: boolean) {
-  if (ativa) {
-    return "aba ativa";
-  }
-  return "aba";
+function Brand({ compact = false }: { compact?: boolean }) {
+  return <a className={`brand${compact ? ' brand-compact' : ''}`} href="#inicio" aria-label="DMN Tech, início">
+    <span className="brand-mark" aria-hidden="true"><span /><span /><span /></span>
+    <span className="brand-name">DMN<span>TECH</span></span>
+  </a>
 }
 
-export default function App() {
-  const [selecionada, setSelecionada] = useState(0);
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
-  const [enviado, setEnviado] = useState(false);
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [privacyOpen, setPrivacyOpen] = useState(false)
+  const [formStatus, setFormStatus] = useState('')
+  const [sending, setSending] = useState(false)
 
-  const pessoa = integrantes[selecionada];
-
-  function enviar(e: FormEvent) {
-    e.preventDefault();
-    // Aqui você pode conectar a uma API ou serviço de e-mail no futuro.
-    setEnviado(true);
-    setNome("");
-    setEmail("");
-    setMensagem("");
+  async function submitContact(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (!siteConfig.contactEndpoint) {
+      setFormStatus('O formulário ainda não está conectado. Configure contactEndpoint em src/config.ts para receber mensagens.')
+      return
+    }
+    const form = event.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
+    setSending(true)
+    setFormStatus('')
+    try {
+      const response = await fetch(siteConfig.contactEndpoint, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
+      })
+      if (!response.ok) throw new Error('A integração não aceitou o envio.')
+      form.reset()
+      setFormStatus('Mensagem enviada. Obrigado por entrar em contato!')
+    } catch {
+      setFormStatus('Não foi possível enviar agora. Confira a integração e tente novamente.')
+    } finally { setSending(false) }
   }
 
-  return (
-    <>
-      <header className="topo">
-        <a href="#inicio" className="marca" aria-label="DMN Tech, início">
-          DMN<span>tech</span>
-        </a>
-        <nav aria-label="Principal">
-          <a href="#sobre">Sobre</a>
-          <a href="#equipe">Equipe</a>
-          <a href="#processo">Como trabalhamos</a>
-          <a href="#contato" className="botao pequeno">
-            Fale conosco
-          </a>
+  const closeMenu = () => setMenuOpen(false)
+  const navItems = [['Sobre', '#sobre'], ['Serviços', '#servicos'], ['Projetos', '#projetos'], ['Tecnologias', '#tecnologias'], ['Contato', '#contato']]
+
+  return <>
+    <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header className="site-header">
+      <div className="container nav-wrap">
+        <Brand />
+        <button className="menu-toggle" aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
+        <nav className={menuOpen ? 'nav-links is-open' : 'nav-links'} aria-label="Navegação principal">
+          {navItems.map(([label, href]) => <a key={href} href={href} onClick={closeMenu}>{label}</a>)}
+          <a className="nav-cta" href="#contato" onClick={closeMenu}>Solicitar orçamento <ArrowUpRight size={15} /></a>
         </nav>
-      </header>
+      </div>
+    </header>
 
-      <main>
-        <section id="inicio" className="hero">
-          <div className="hero-conteudo">
-            <h1 className="hero-logo" aria-label="DMN Tech">
-              <span className="hero-dmn">DMN</span>
-              <span className="hero-tech">tech</span>
-            </h1>
-            <svg className="onda" viewBox="0 0 600 40" aria-hidden="true">
-              <path d="M0 20 C 80 -10, 160 50, 260 20 S 440 -5, 600 22" />
-            </svg>
-            <p className="slogan">Conectando ideias, criando soluções.</p>
-            <p className="hero-texto">
-              Desenvolvemos soluções tecnológicas eficientes e inovadoras para atender às
-              necessidades dos nossos clientes.
-            </p>
-            <div className="hero-acoes">
-              <a href="#contato" className="botao">
-                Fale conosco
-              </a>
-              <a href="#equipe" className="botao contorno">
-                Conheça a equipe
-              </a>
+    <main id="conteudo">
+      <section className="hero section" id="inicio">
+        <div className="hero-grid hidden sm:block" aria-hidden="true" />
+        <div className="container hero-inner">
+          <div className="hero-copy">
+            <div className="eyebrow"><span className="eyebrow-dot" /> TECNOLOGIA COM PROPÓSITO</div>
+            <h1>Transformamos ideias em <span className="gradient-text">soluções digitais.</span></h1>
+            <p className="hero-lead">Desenvolvemos sistemas, sites e soluções tecnológicas sob medida para impulsionar empresas e transformar negócios.</p>
+            <div className="hero-actions">
+              <a className="button button-primary" href={whatsappUrl() || '#contato'}>Solicitar um projeto <ArrowRight size={17} /></a>
+              <a className="button button-quiet" href="#servicos">Conhecer serviços <ArrowDown size={16} /></a>
             </div>
+            <div className="hero-footnote"><span className="status-pulse" /> Tecnologia pensada para o seu próximo passo</div>
           </div>
-        </section>
 
-        <section id="sobre" className="secao">
-          <div className="miolo">
-            <h2>Soluções personalizadas, do jeito que o cliente precisa</h2>
-            <p className="lead">
-              Nossa missão é desenvolver soluções tecnológicas eficientes e inovadoras. Para isso,
-              unimos quatro valores em todo projeto:
-            </p>
-            <ul className="valores">
-              {valores.map((v) => (
-                <li key={v.titulo}>
-                  <h3>{v.titulo}</h3>
-                  <p>{v.texto}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section id="equipe" className="secao alt">
-          <div className="miolo">
-            <h2>Quem faz a DMN Tech acontecer</h2>
-            <p className="lead">
-              Cada integrante responde por uma área, mas ninguém trabalha isolada: todas participam
-              da programação, dos testes e da documentação.
-            </p>
-
-            <div className="abas" role="tablist" aria-label="Integrantes da equipe">
-              {integrantes.map((p, i) => (
-                <button
-                  key={p.nome}
-                  role="tab"
-                  aria-selected={i === selecionada}
-                  className={classeAba(i === selecionada)}
-                  onClick={() => setSelecionada(i)}
-                >
-                  {p.nome}
-                </button>
-              ))}
-            </div>
-
-            <div className="painel" role="tabpanel">
-              <p className="resumo">{pessoa.resumo}</p>
-              <div className="papeis">
-                {pessoa.papeis.map((papel) => (
-                  <article key={papel.titulo}>
-                    <h3>{papel.titulo}</h3>
-                    <ul>
-                      {papel.tarefas.map((t) => (
-                        <li key={t}>{t}</li>
-                      ))}
-                    </ul>
-                  </article>
-                ))}
+          <div className="hero-visual" aria-label="Ilustração de uma interface digital em desenvolvimento">
+            <div className="orbit orbit-one" /><div className="orbit orbit-two" />
+            <div className="visual-glow" />
+            <div className="code-window">
+              <div className="window-bar"><div className="window-dots"><i /><i /><i /></div><span>dmn_solution.ts</span><span className="window-lock"><ShieldCheck size={13} /> seguro</span></div>
+              <div className="code-body">
+                <div className="code-line"><span className="line-num">01</span><span><b>const</b> <em>ideia</em> = {'{'}</span></div>
+                <div className="code-line indent"><span className="line-num">02</span><span>desafio: <i>'seu negócio'</i>,</span></div>
+                <div className="code-line indent"><span className="line-num">03</span><span>visão: <i>'novas possibilidades'</i>,</span></div>
+                <div className="code-line"><span className="line-num">04</span><span>{'}'}</span></div>
+                <div className="code-line spacer"><span className="line-num">05</span><span /></div>
+                <div className="code-line"><span className="line-num">06</span><span><b>export</b> <b>default</b> <em>transformar</em>(ideia)</span></div>
+                <div className="code-line"><span className="line-num">07</span><span className="cursor-block" /></div>
               </div>
+              <div className="code-status"><span><span className="mini-status" /> solução pronta para evoluir</span><span>DMN / 001</span></div>
+            </div>
+            <div className="float-card float-card-top"><span className="float-icon"><Sparkles size={15} /></span><span><strong>Feito sob medida</strong><small>para cada negócio</small></span></div>
+            <div className="float-card float-card-bottom"><span className="float-icon blue"><Braces size={16} /></span><span><strong>Ideia → realidade</strong><small>com tecnologia</small></span></div>
+            <div className="visual-index">01 <span /> 04</div>
+          </div>
+        </div>
+        <a href="#sobre" className="hero-scroll" aria-label="Rolar para conhecer a empresa"><span /> role para explorar</a>
+      </section>
+
+      <section className="intro-strip"><div className="container intro-strip-inner"><span>ESTRATÉGIA</span><i /><span>DESIGN</span><i /><span>TECNOLOGIA</span><i /><span>RESULTADO</span></div></section>
+
+      <section className="section about-section" id="sobre">
+        <div className="container about-grid">
+          <div className="section-label"><span>01 / SOBRE A DMN TECH</span><span className="label-rule" /></div>
+          <div className="about-content">
+            <h2>Tecnologia que <span className="gradient-text">transforma negócios.</span></h2>
+            <div className="about-lower"><p>Na DMN Tech, acreditamos que a tecnologia deve simplificar processos, gerar oportunidades e impulsionar resultados. Unimos estratégia, inovação e desenvolvimento para criar soluções que fazem sentido para cada negócio.</p>
+              <div className="values-list" aria-label="Nossos valores">{values.map((value) => <span key={value}><Check size={14} />{value}</span>)}</div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="processo" className="secao">
-          <div className="miolo">
-            <h2>Como trabalhamos</h2>
-            <p className="lead">
-              Decisões importantes e entregas são sempre feitas em conjunto. O caminho de um projeto
-              segue estas etapas:
-            </p>
-            <ol className="etapas">
-              {etapas.map((e) => (
-                <li key={e.titulo}>
-                  <h3>{e.titulo}</h3>
-                  <p>{e.texto}</p>
-                </li>
-              ))}
-            </ol>
+      <section className="section services-section" id="servicos">
+        <div className="container">
+          <div className="section-heading"><div><div className="section-label"><span>02 / O QUE FAZEMOS</span></div><h2>Soluções para o que <span className="gradient-text">vem pela frente.</span></h2></div><p>Da primeira conversa à entrega, construímos tecnologia alinhada ao que sua empresa precisa.</p></div>
+          <div className="services-grid">{services.map(({ icon: Icon, number, title, text }) => <article className="service-card" key={number}>
+            <div className="service-top"><span className="service-icon"><Icon size={20} strokeWidth={1.7} /></span><span className="service-number">{number}</span></div>
+            <h3>{title}</h3><p>{text}</p><a href="#contato" className="card-link" aria-label={`Conversar sobre ${title}`}>Conversar sobre isso <ArrowUpRight size={15} /></a>
+          </article>)}</div>
+        </div>
+      </section>
+
+      <section className="section work-section" id="projetos">
+        <div className="container">
+          <div className="section-heading work-heading"><div><div className="section-label"><span>03 / POSSIBILIDADES</span></div><h2>Projetos com espaço <span className="gradient-text">para crescer.</span></h2></div><p>Uma prévia de formatos de solução. Os exemplos abaixo são demonstrativos.</p></div>
+          <div className="work-grid">
+            <article className="project-card project-large"><div className="project-art art-dashboard"><div className="art-sidebar"><span className="art-logo" /><i /><i /><i /><i /></div><div className="art-content"><div className="art-topline"><span /><span /></div><div className="art-metrics"><i /><i /><i /></div><div className="art-chart"><div className="chart-lines" /><svg viewBox="0 0 500 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100 C55 82 65 104 115 72 S180 85 222 51 S286 78 330 42 S392 61 435 19 S472 31 500 8" /></svg></div></div><span className="demo-badge">DEMONSTRATIVO</span></div><div className="project-meta"><div><span className="project-type">DASHBOARD · DADOS</span><h3>Painel de operações</h3><p>Visão centralizada para acompanhar indicadores e rotinas de negócio.</p></div><a href="#contato" aria-label="Falar sobre um painel de operações"><ArrowUpRight /></a></div></article>
+            <article className="project-card"><div className="project-art art-mobile"><div className="phone-frame"><div className="phone-notch" /><div className="phone-screen"><span className="phone-greeting" /><span className="phone-card" /><span className="phone-row" /><span className="phone-row short" /><span className="phone-button" /></div></div><div className="mobile-orb" /><span className="demo-badge">DEMONSTRATIVO</span></div><div className="project-meta"><div><span className="project-type">PLATAFORMA · WEB</span><h3>Experiência digital</h3><p>Interface responsiva para aproximar marca e clientes.</p></div><a href="#contato" aria-label="Falar sobre uma experiência digital"><ArrowUpRight /></a></div></article>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="contato" className="secao contato">
-          <div className="miolo estreito">
-            <h2>Vamos conversar sobre o seu projeto?</h2>
-            <p className="lead">Conte o que você precisa e a nossa equipe retorna com os próximos passos.</p>
+      <section className="tech-section" id="tecnologias"><div className="container tech-inner"><div><div className="section-label"><span>04 / FERRAMENTAS</span></div><h2>A tecnologia certa<br /><span className="gradient-text">para cada desafio.</span></h2><p>Uma seleção de tecnologias que podem compor os projetos, definida conforme a necessidade de cada solução.</p></div><div className="tech-list">{technologies.map((tech, index) => <span className="tech-chip" key={tech}><span className="tech-dot">{String(index + 1).padStart(2, '0')}</span>{tech}<ArrowUpRight size={13} /></span>)}</div></div></section>
 
-            <form onSubmit={enviar}>
-              <label>
-                Nome
-                <input value={nome} onChange={(e) => setNome(e.target.value)} required />
-              </label>
-              <label>
-                E-mail
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-              </label>
-              <label>
-                Mensagem
-                <textarea rows={5} value={mensagem} onChange={(e) => setMensagem(e.target.value)} required />
-              </label>
-              <button type="submit" className="botao">
-                Enviar mensagem
-              </button>
-              {enviado && (
-                <p className="aviso" role="status">
-                  Mensagem enviada. Obrigada pelo contato!
-                </p>
-              )}
-            </form>
-          </div>
-        </section>
-      </main>
+      <section className="section process-section"><div className="container"><div className="section-heading"><div><div className="section-label"><span>05 / COMO TRABALHAMOS</span></div><h2>Do primeiro papo <span className="gradient-text">à próxima fase.</span></h2></div><p>Um processo claro, colaborativo e adaptado ao ritmo do seu projeto.</p></div><div className="process-grid">{steps.map(([number, title, text]) => <article className="process-step" key={number}><span className="step-number">{number}</span><span className="step-line" /><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
-      <footer className="rodape">
-        <strong>DMN Tech Soluções Tecnológicas Ltda.</strong>
-        <span>Conectando ideias, criando soluções.</span>
-      </footer>
-    </>
-  );
+      <section className="contact-band"><div className="container contact-band-inner"><div><span className="eyebrow"><span className="eyebrow-dot" /> VAMOS CONSTRUIR?</span><h2>Sua próxima grande ideia <span className="gradient-text">começa aqui.</span></h2><p>Conte para a DMN Tech o que você precisa. Vamos encontrar a melhor solução para o seu negócio.</p></div><a className="button button-light" href={whatsappUrl() || '#contato'}>Fale com a gente <ArrowUpRight size={17} /></a><div className="band-orb" aria-hidden="true" /></div></section>
+
+      <section className="section contact-section" id="contato"><div className="container contact-grid"><div className="contact-copy"><div className="section-label"><span>06 / CONTATO</span></div><h2>Vamos tirar seu <span className="gradient-text">projeto do papel?</span></h2><p>Preencha o formulário para iniciar uma conversa. Retornaremos pelos dados informados assim que a integração de contato estiver configurada.</p><div className="contact-direct"><MessageCircle size={17} /><span>Prefere falar diretamente?</span>{siteConfig.whatsapp ? <a href={whatsappUrl()}>Chamar no WhatsApp <ArrowUpRight size={14} /></a> : <span className="config-hint">Configure o WhatsApp em src/config.ts</span>}</div></div>
+          <form className="contact-form" onSubmit={submitContact}>
+            <div className="form-row"><label>Seu nome<input name="name" required autoComplete="name" placeholder="Como podemos chamar você?" /></label><label>Seu e-mail<input name="email" type="email" required autoComplete="email" placeholder="voce@empresa.com" /></label></div>
+            <label>Serviço de interesse<span className="select-wrap"><select name="service" defaultValue="" required><option value="" disabled>Selecione uma opção</option>{services.map((service) => <option key={service.number}>{service.title}</option>)}<option>Outro assunto</option></select><ChevronDown size={16} /></span></label>
+            <label>Conte um pouco sobre o projeto<textarea name="message" required rows={4} placeholder="Qual desafio você quer resolver?" /></label>
+            <div className="form-bottom"><span className="privacy-note"><ShieldCheck size={14} /> Seus dados serão usados apenas para responder ao contato.</span><button className="button button-primary" type="submit" disabled={sending}>{sending ? 'Enviando...' : 'Enviar mensagem'} <Send size={15} /></button></div>
+            {formStatus && <p className="form-status" role="status">{formStatus}</p>}
+          </form></div></section>
+    </main>
+
+    <footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><Brand compact /><p>Soluções digitais sob medida para empresas que querem evoluir.</p></div><div className="footer-links"><div><span className="footer-title">NAVEGAÇÃO</span><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#tecnologias">Tecnologias</a></div><div><span className="footer-title">CONTATO</span>{siteConfig.email ? <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> : <span className="footer-muted">E-mail a configurar</span>}{siteConfig.instagram ? <a href={siteConfig.instagram} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={12} /></a> : <span className="footer-muted">Instagram a configurar</span>}<a href="#contato">Solicitar orçamento</a></div></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} DMN Tech. Todos os direitos reservados.</span><a href="#privacidade" onClick={(e) => { e.preventDefault(); setPrivacyOpen(true) }}>Privacidade</a></div></footer>
+    {privacyOpen && <div className="privacy-backdrop" onClick={() => setPrivacyOpen(false)}><section id="privacidade" className="privacy-popover" role="dialog" aria-modal="true" aria-labelledby="privacy-title" onClick={(event) => event.stopPropagation()}><button onClick={() => setPrivacyOpen(false)} aria-label="Fechar"><X size={16} /></button><h3 id="privacy-title">Privacidade</h3><p>Os dados enviados pelo formulário são usados somente para responder à sua solicitação. A política completa será publicada quando os canais e processos de atendimento da DMN Tech forem definidos.</p></section></div>}
+    {siteConfig.whatsapp && <a className="whatsapp-float" href={whatsappUrl()} aria-label="Conversar pelo WhatsApp" target="_blank" rel="noreferrer"><MessageCircle size={21} /></a>}
+  </>
 }
+
+export default App
