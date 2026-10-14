@@ -22,19 +22,19 @@ const teamMembers = [
     name: 'Marcela Carneiro',
     role: 'Gerente de projeto / Scrum Master',
     responsibilities: ['Planejamento e acompanhamento', 'Condução de reuniões', 'Gestão de riscos e prazos'],
-    portraitPosition: '5.5% 47.5%',
+    portraitPosition: '7.7% 48%',
   },
   {
     name: 'Nathália Rodrigues',
     role: 'Líder técnica / especialista em execução',
     responsibilities: ['Orientação técnica', 'Condução da execução'],
-    portraitPosition: '50% 47.5%',
+    portraitPosition: '50.1% 48%',
   },
   {
     name: 'Danyella Vinhal',
     role: 'Documentação e qualidade',
     responsibilities: ['Organização documental', 'Levantamento de requisitos', 'Garantia da qualidade das entregas'],
-    portraitPosition: '90.5% 47.5%',
+    portraitPosition: '88.5% 48%',
   },
 ]
 const steps = [
