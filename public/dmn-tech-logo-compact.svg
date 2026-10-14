@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 116" role="img" aria-labelledby="title">
+  <title id="title">DMN Tech</title>
+  <g fill="none" stroke="#54c5e9" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2">
+    <path d="M8 34h22l12 12-12 12H8M8 46h29M8 58h22" />
+    <circle cx="7" cy="34" r="3.8" fill="#0a101b" />
+    <circle cx="7" cy="46" r="3.8" fill="#0a101b" />
+    <circle cx="7" cy="58" r="3.8" fill="#0a101b" />
+  </g>
+  <text x="47" y="78" fill="#f4f7fc" font-family="Manrope, Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-4">DMN</text>
+  <path d="m148 70 30-46" fill="none" stroke="#42b5df" stroke-linecap="round" stroke-width="10" />
+  <path d="M51 101h61m144 0h37" fill="none" stroke="#438eaa" stroke-width="1.6" />
+  <text x="124" y="108" fill="#55badb" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="500" letter-spacing="10">TECH</text>
+</svg>

@@ -39,3 +39,8 @@
 .tech-chip>.tool-logo.api-logo{color:#67dcff}
 .tech-chip>.tool-logo.html-logo{color:#e34f26}
 .tech-chip>.tool-logo.css-logo{color:#1572b6}
+
+/* User-provided DMN Tech identity */
+.brand-logo{display:block;width:132px;height:auto;flex:none}
+.brand-compact .brand-logo{width:158px}
+@media(max-width:700px){.brand-logo{width:122px}.brand-compact .brand-logo{width:148px}}
