@@ -132,25 +132,25 @@ function App() {
             <div className="hero-footnote"><span className="status-pulse" /> Tecnologia pensada para o seu próximo passo</div>
           </div>
 
-          <div className="hero-visual" aria-label="Ilustração de uma interface digital em desenvolvimento">
-            <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-            <div className="visual-glow" />
-            <div className="code-window">
-              <div className="window-bar"><div className="window-dots"><i /><i /><i /></div><span>dmn_solution.ts</span><span className="window-lock"><ShieldCheck size={13} /> seguro</span></div>
-              <div className="code-body">
-                <div className="code-line"><span className="line-num">01</span><span><b>const</b> <em>ideia</em> = {'{'}</span></div>
-                <div className="code-line indent"><span className="line-num">02</span><span>desafio: <i>'seu negócio'</i>,</span></div>
-                <div className="code-line indent"><span className="line-num">03</span><span>visão: <i>'novas possibilidades'</i>,</span></div>
-                <div className="code-line"><span className="line-num">04</span><span>{'}'}</span></div>
-                <div className="code-line spacer"><span className="line-num">05</span><span /></div>
-                <div className="code-line"><span className="line-num">06</span><span><b>export</b> <b>default</b> <em>transformar</em>(ideia)</span></div>
-                <div className="code-line"><span className="line-num">07</span><span className="cursor-block" /></div>
+          <div className="hero-visual tech-hero-visual" role="img" aria-label="Elemento tecnológico 3D com um cubo digital girando e órbitas luminosas">
+            <div className="tech-visual-glow" />
+            <div className="tech-orbit tech-orbit-one"><span /></div>
+            <div className="tech-orbit tech-orbit-two"><span /></div>
+            <div className="tech-cube" aria-hidden="true">
+              <div className="tech-cube-face cube-front">
+                <div className="cube-header"><span className="cube-brand-mark"><i /><i /><i /></span><span>DMN TECH</span><span className="cube-header-index">001</span></div>
+                <div className="cube-network"><i className="trace trace-left" /><i className="trace trace-right" /><i className="trace trace-top" /><i className="trace trace-bottom" /><span className="cube-core"><Braces size={34} strokeWidth={1.5} /></span></div>
+                <div className="cube-footer"><span>INOVAÇÃO DIGITAL</span><span className="cube-status"><i /> ONLINE</span></div>
               </div>
-              <div className="code-status"><span><span className="mini-status" /> solução pronta para evoluir</span><span>DMN / 001</span></div>
+              <div className="tech-cube-face cube-back"><span className="cube-back-mark"><Sparkles size={38} /></span><span className="cube-back-label">TECNOLOGIA<br />COM PROPÓSITO</span><span className="cube-back-code">DMN / 001</span></div>
+              <div className="tech-cube-face cube-right"><span className="cube-side-label">DADOS</span><div className="cube-side-bars"><i /><i /><i /><i /><i /></div><span className="cube-side-dots"><i /><i /><i /></span></div>
+              <div className="tech-cube-face cube-left"><span className="cube-side-label">SISTEMAS</span><div className="cube-side-grid"><i /><i /><i /><i /><i /><i /><i /><i /><i /></div><span className="cube-back-code">∞ / EVOLUÇÃO</span></div>
+              <div className="tech-cube-face cube-top"><span className="cube-top-mark"><Sparkles size={26} /></span><span className="cube-side-label">CRIATIVIDADE</span></div>
+              <div className="tech-cube-face cube-bottom"><span className="cube-bottom-mark"><Braces size={24} /></span><span className="cube-side-label">TECNOLOGIA</span></div>
             </div>
-            <div className="float-card float-card-top"><span className="float-icon"><Sparkles size={15} /></span><span><strong>Feito sob medida</strong><small>para cada negócio</small></span></div>
-            <div className="float-card float-card-bottom"><span className="float-icon blue"><Braces size={16} /></span><span><strong>Ideia → realidade</strong><small>com tecnologia</small></span></div>
-            <div className="visual-index">01 <span /> 04</div>
+            <div className="tech-satellite satellite-one"><Sparkles size={14} /><span>IDEIAS</span></div>
+            <div className="tech-satellite satellite-two"><Database size={14} /><span>DADOS</span></div>
+            <div className="tech-satellite satellite-three"><Workflow size={14} /><span>FLUXO</span></div>
           </div>
         </div>
         <a href="#sobre" className="hero-scroll" aria-label="Rolar para conhecer a empresa"><span /> role para explorar</a>
