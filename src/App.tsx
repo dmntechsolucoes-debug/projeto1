@@ -17,6 +17,30 @@ const services = [
 
 const values = ['Inovação', 'Compromisso', 'Qualidade', 'Transparência', 'Evolução contínua']
 const technologies = ['React', 'TypeScript', 'Node.js', 'Python', 'SQL', 'APIs REST', 'HTML5', 'CSS3']
+
+function TechnologyLogo({ name }: { name: string }) {
+  switch (name) {
+    case 'React':
+      return <svg className="tool-logo react-logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="2.6" fill="currentColor" /><g fill="none" stroke="currentColor" strokeWidth="1.5"><ellipse cx="16" cy="16" rx="13" ry="5" /><ellipse cx="16" cy="16" rx="13" ry="5" transform="rotate(60 16 16)" /><ellipse cx="16" cy="16" rx="13" ry="5" transform="rotate(120 16 16)" /></g></svg>
+    case 'TypeScript':
+      return <svg className="tool-logo typescript-logo" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M4 5h24v22H4z" /><path fill="#0b1728" d="M16 17h5v1.8h-1.5v6.1h-2v-6.1H16zm6.1 5.2c.7.6 1.4.9 2.1.9.6 0 .9-.2.9-.6 0-.4-.3-.6-1.2-.9-1.3-.5-2-1.1-2-2.3 0-1.4 1.1-2.3 2.7-2.3.9 0 1.7.2 2.3.7l-.8 1.5c-.5-.4-.9-.5-1.5-.5-.5 0-.8.2-.8.5 0 .4.3.5 1.2.9 1.4.5 2 1.1 2 2.3 0 1.5-1.1 2.4-2.8 2.4-1.1 0-2.1-.4-2.8-1z" /></svg>
+    case 'Node.js':
+      return <svg className="tool-logo node-logo" viewBox="0 0 32 32" aria-hidden="true"><path d="m16 3 11 6.4v13.2L16 29 5 22.6V9.4z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /><text x="16" y="19.5" textAnchor="middle" fill="currentColor" fontSize="8" fontWeight="800" fontFamily="Arial,sans-serif">JS</text></svg>
+    case 'Python':
+      return <svg className="tool-logo python-logo" viewBox="0 0 32 32" aria-hidden="true"><path fill="#3776ab" d="M15.8 3c-5.1 0-5.2 2.2-5.2 4.3v4.2h10.1v1.7H7.5c-2.7 0-4.5 1.8-4.5 5.2s1.8 5.2 4.5 5.2h3.1v-3.1c0-2.8 2.1-4.8 4.8-4.8h6.2c2.2 0 4-1.8 4-4V7.6c0-2.7-2.1-4.6-5.1-4.6z" /><circle cx="13" cy="6.7" r="1.1" fill="#fff" /><path fill="#ffd343" d="M16.2 29c5.1 0 5.2-2.2 5.2-4.3v-4.2H11.3v-1.7h13.2c2.7 0 4.5-1.8 4.5-5.2s-1.8-5.2-4.5-5.2h-3.1v3.1c0 2.8-2.1 4.8-4.8 4.8h-6.2c-2.2 0-4 1.8-4 4v4.1c0 2.7 2.1 4.6 5.1 4.6z" /><circle cx="19" cy="25.3" r="1.1" fill="#fff" /></svg>
+    case 'SQL':
+      return <svg className="tool-logo sql-logo" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="7" rx="10.5" ry="4" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M5.5 7v17c0 2.2 4.7 4 10.5 4s10.5-1.8 10.5-4V7M5.5 15c0 2.2 4.7 4 10.5 4s10.5-1.8 10.5-4" fill="none" stroke="currentColor" strokeWidth="2" /></svg>
+    case 'APIs REST':
+      return <svg className="tool-logo api-logo" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" strokeWidth="2"><path d="M8 8 23 11M8 8l2 16m13-13-11 12m11-12 3 13" /><circle cx="7" cy="7" r="3" fill="currentColor" /><circle cx="24" cy="11" r="3" fill="currentColor" /><circle cx="10" cy="25" r="3" fill="currentColor" /><circle cx="26" cy="25" r="3" fill="currentColor" /></g></svg>
+    case 'HTML5':
+      return <svg className="tool-logo html-logo" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M5 3h22l-2 23-9 3-9-3z" /><path fill="#111827" d="M10 8h12l-.3 3H13l.2 2.5h8.2l-.8 9-4.6 1.5-4.6-1.5-.3-4h3l.2 1.8 1.7.5 1.7-.5.3-3.8h-8.2z" /></svg>
+    case 'CSS3':
+      return <svg className="tool-logo css-logo" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M5 3h22l-2 23-9 3-9-3z" /><path fill="#111827" d="M10 8h12l-.3 3H13l.2 2.2h8.2l-.8 9.3-4.6 1.5-4.6-1.5-.3-4h3l.2 1.8 1.7.5 1.7-.5.3-4.1h-8z" /></svg>
+    default:
+      return null
+  }
+}
+
 const teamMembers = [
   {
     name: 'Marcela Carneiro',
@@ -160,7 +184,6 @@ function App() {
 
       <section className="section about-section" id="sobre">
         <div className="container about-grid">
-          <div className="section-label"><span>01 / SOBRE A DMN TECH</span><span className="label-rule" /></div>
           <div className="about-content">
             <h2>Tecnologia que <span className="gradient-text">transforma negócios.</span></h2>
             <div className="about-lower"><p>Na DMN Tech, acreditamos que a tecnologia deve simplificar processos, gerar oportunidades e impulsionar resultados. Unimos estratégia, inovação e desenvolvimento para criar soluções que fazem sentido para cada negócio.</p>
@@ -172,7 +195,7 @@ function App() {
 
       <section className="section team-section" id="equipe">
         <div className="container">
-          <div className="section-heading"><div><div className="section-label"><span>02 / NOSSA EQUIPE</span></div><h2>Talento e colaboração <span className="gradient-text">em cada entrega.</span></h2></div><p>Conheça as pessoas que lideram, organizam e cuidam de cada etapa dos projetos.</p></div>
+          <div className="section-heading"><div><h2>Talento e colaboração <span className="gradient-text">em cada entrega.</span></h2></div><p>Conheça as pessoas que lideram, organizam e cuidam de cada etapa dos projetos.</p></div>
           <div className="team-grid">
             {teamMembers.map((member, index) => <article className="team-card" key={member.name}>
               <div className="team-card-top">
@@ -191,7 +214,7 @@ function App() {
 
       <section className="section services-section" id="servicos">
         <div className="container">
-          <div className="section-heading"><div><div className="section-label"><span>03 / O QUE FAZEMOS</span></div><h2>Soluções para o que <span className="gradient-text">vem pela frente.</span></h2></div><p>Da primeira conversa à entrega, construímos tecnologia alinhada ao que sua empresa precisa.</p></div>
+          <div className="section-heading"><div><h2>Soluções para o que <span className="gradient-text">vem pela frente.</span></h2></div><p>Da primeira conversa à entrega, construímos tecnologia alinhada ao que sua empresa precisa.</p></div>
           <div className="services-grid">{services.map(({ icon: Icon, number, title, text }) => <article className="service-card" key={number}>
             <div className="service-top"><span className="service-icon"><Icon size={20} strokeWidth={1.7} /></span><span className="service-number">{number}</span></div>
             <h3>{title}</h3><p>{text}</p><a href="#contato" className="card-link" aria-label={`Conversar sobre ${title}`}>Conversar sobre isso <ArrowUpRight size={15} /></a>
@@ -201,7 +224,7 @@ function App() {
 
       <section className="section work-section" id="projetos">
         <div className="container">
-          <div className="section-heading work-heading"><div><div className="section-label"><span>04 / POSSIBILIDADES</span></div><h2>Projetos com espaço <span className="gradient-text">para crescer.</span></h2></div><p>Uma prévia de formatos de solução. Os exemplos abaixo são demonstrativos.</p></div>
+          <div className="section-heading work-heading"><div><h2>Projetos com espaço <span className="gradient-text">para crescer.</span></h2></div><p>Uma prévia de formatos de solução. Os exemplos abaixo são demonstrativos.</p></div>
           <div className="work-grid">
             <article className="project-card project-large"><div className="project-art art-dashboard"><div className="art-sidebar"><span className="art-logo" /><i /><i /><i /><i /></div><div className="art-content"><div className="art-topline"><span /><span /></div><div className="art-metrics"><i /><i /><i /></div><div className="art-chart"><div className="chart-lines" /><svg viewBox="0 0 500 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100 C55 82 65 104 115 72 S180 85 222 51 S286 78 330 42 S392 61 435 19 S472 31 500 8" /></svg></div></div></div><div className="project-meta"><div><span className="project-type">DASHBOARD · DADOS</span><h3>Painel de operações</h3><p>Visão centralizada para acompanhar indicadores e rotinas de negócio.</p></div><a href="#contato" aria-label="Falar sobre um painel de operações"><ArrowUpRight /></a></div></article>
             <article className="project-card"><div className="project-art art-mobile"><div className="phone-frame"><div className="phone-notch" /><div className="phone-screen"><span className="phone-greeting" /><span className="phone-card" /><span className="phone-row" /><span className="phone-row short" /><span className="phone-button" /></div></div><div className="mobile-orb" /></div><div className="project-meta"><div><span className="project-type">PLATAFORMA · WEB</span><h3>Experiência digital</h3><p>Interface responsiva para aproximar marca e clientes.</p></div><a href="#contato" aria-label="Falar sobre uma experiência digital"><ArrowUpRight /></a></div></article>
@@ -209,13 +232,13 @@ function App() {
         </div>
       </section>
 
-      <section className="tech-section" id="tecnologias"><div className="container tech-inner"><div><div className="section-label"><span>05 / FERRAMENTAS</span></div><h2>A tecnologia certa<br /><span className="gradient-text">para cada desafio.</span></h2><p>Uma seleção de tecnologias que podem compor os projetos, definida conforme a necessidade de cada solução.</p></div><div className="tech-list">{technologies.map((tech, index) => <span className="tech-chip" key={tech}><span className="tech-dot">{String(index + 1).padStart(2, '0')}</span>{tech}<ArrowUpRight size={13} /></span>)}</div></div></section>
+      <section className="tech-section" id="tecnologias"><div className="container tech-inner"><div><h2>A tecnologia certa<br /><span className="gradient-text">para cada desafio.</span></h2><p>Uma seleção de tecnologias que podem compor os projetos, definida conforme a necessidade de cada solução.</p></div><div className="tech-list">{technologies.map((tech) => <div className="tech-chip" key={tech}><TechnologyLogo name={tech} /><span className="tech-name">{tech}</span><ArrowUpRight size={13} /></div>)}</div></div></section>
 
-      <section className="section process-section"><div className="container"><div className="section-heading"><div><div className="section-label"><span>06 / COMO TRABALHAMOS</span></div><h2>Do primeiro papo <span className="gradient-text">à próxima fase.</span></h2></div><p>Um processo claro, colaborativo e adaptado ao ritmo do seu projeto.</p></div><div className="process-grid">{steps.map(([number, title, text]) => <article className="process-step" key={number}><span className="step-number">{number}</span><span className="step-line" /><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+      <section className="section process-section"><div className="container"><div className="section-heading"><div><h2>Do primeiro papo <span className="gradient-text">à próxima fase.</span></h2></div><p>Um processo claro, colaborativo e adaptado ao ritmo do seu projeto.</p></div><div className="process-grid">{steps.map(([number, title, text]) => <article className="process-step" key={number}><span className="step-number">{number}</span><span className="step-line" /><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
 
       <section className="contact-band"><div className="container contact-band-inner"><div><span className="eyebrow"><span className="eyebrow-dot" /> VAMOS CONSTRUIR?</span><h2>Sua próxima grande ideia <span className="gradient-text">começa aqui.</span></h2><p>Conte para a DMN Tech o que você precisa. Vamos encontrar a melhor solução para o seu negócio.</p></div><a className="button button-light" href={whatsappUrl() || '#contato'}>Fale com a gente <ArrowUpRight size={17} /></a><div className="band-orb" aria-hidden="true" /></div></section>
 
-      <section className="section contact-section" id="contato"><div className="container contact-grid"><div className="contact-copy"><div className="section-label"><span>07 / CONTATO</span></div><h2>Vamos tirar seu <span className="gradient-text">projeto do papel?</span></h2><p>Preencha o formulário para abrir um rascunho no Gmail, revisar sua mensagem e enviar para a equipe.</p><div className="contact-direct"><MessageCircle size={17} /><span>Prefere falar diretamente?</span>{siteConfig.whatsapp ? <a href={whatsappUrl()}>Chamar no WhatsApp <ArrowUpRight size={14} /></a> : <span className="config-hint">Configure o WhatsApp em src/config.ts</span>}</div></div>
+      <section className="section contact-section" id="contato"><div className="container contact-grid"><div className="contact-copy"><h2>Vamos tirar seu <span className="gradient-text">projeto do papel?</span></h2><p>Preencha o formulário para abrir um rascunho no Gmail, revisar sua mensagem e enviar para a equipe.</p><div className="contact-direct"><MessageCircle size={17} /><span>Prefere falar diretamente?</span>{siteConfig.whatsapp ? <a href={whatsappUrl()}>Chamar no WhatsApp <ArrowUpRight size={14} /></a> : <span className="config-hint">Configure o WhatsApp em src/config.ts</span>}</div></div>
           <form className="contact-form" onSubmit={submitContact}>
             <div className="form-row"><label>Seu nome<input name="name" required autoComplete="name" placeholder="Como podemos chamar você?" /></label><label>Seu e-mail<input name="email" type="email" required autoComplete="email" placeholder="voce@empresa.com" /></label></div>
             <label>Serviço de interesse<span className="select-wrap"><select name="service" defaultValue="" required><option value="" disabled>Selecione uma opção</option>{services.map((service) => <option key={service.number}>{service.title}</option>)}<option>Outro assunto</option></select><ChevronDown size={16} /></span></label>
