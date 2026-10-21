@@ -5,6 +5,7 @@ import {
   Sparkles, Workflow, X,
 } from 'lucide-react'
 import { siteConfig, whatsappUrl } from './config'
+import ServicesPage from './ServicesPage'
 
 const services = [
   { icon: Monitor, number: '01', title: 'Desenvolvimento de sites', text: 'Experiências digitais rápidas, responsivas e feitas para representar sua marca com clareza.' },
@@ -122,8 +123,10 @@ function App() {
     } finally { setSending(false) }
   }
 
+  if (window.location.pathname.replace(/\/+$/, '') === '/servicos') return <ServicesPage />
+
   const closeMenu = () => setMenuOpen(false)
-  const navItems = [['Sobre', '#sobre'], ['Equipe', '#equipe'], ['Serviços', '#servicos'], ['Projetos', '#projetos'], ['Tecnologias', '#tecnologias'], ['Contato', '#contato']]
+  const navItems = [['Sobre', '#sobre'], ['Equipe', '#equipe'], ['Serviços', '/servicos'], ['Projetos', '#projetos'], ['Tecnologias', '#tecnologias'], ['Contato', '#contato']]
 
   return <>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -150,7 +153,7 @@ function App() {
             <p className="hero-lead">Desenvolvemos sistemas, sites e soluções tecnológicas sob medida para impulsionar empresas e transformar negócios.</p>
             <div className="hero-actions">
               <a className="button button-primary" href={whatsappUrl() || '#contato'}>Solicitar um projeto <ArrowRight size={17} /></a>
-              <a className="button button-quiet" href="#servicos">Conhecer serviços <ArrowDown size={16} /></a>
+              <a className="button button-quiet" href="/servicos">Conhecer serviços <ArrowDown size={16} /></a>
             </div>
             <div className="hero-footnote"><span className="status-pulse" /> Tecnologia pensada para o seu próximo passo</div>
           </div>
@@ -216,7 +219,7 @@ function App() {
           <div className="section-heading"><div><h2>Soluções para o que <span className="gradient-text">vem pela frente.</span></h2></div><p>Da primeira conversa à entrega, construímos tecnologia alinhada ao que sua empresa precisa.</p></div>
           <div className="services-grid">{services.map(({ icon: Icon, number, title, text }) => <article className="service-card" key={number}>
             <div className="service-top"><span className="service-icon"><Icon size={20} strokeWidth={1.7} /></span><span className="service-number">{number}</span></div>
-            <h3>{title}</h3><p>{text}</p><a href="#contato" className="card-link" aria-label={`Conversar sobre ${title}`}>Conversar sobre isso <ArrowUpRight size={15} /></a>
+            <h3>{title}</h3><p>{text}</p><a href="/servicos#detalhes-servicos" className="card-link" aria-label="Ver escopo técnico dos serviços">Ver escopo técnico <ArrowUpRight size={15} /></a>
           </article>)}</div>
         </div>
       </section>
@@ -248,7 +251,7 @@ function App() {
           </form></div></section>
     </main>
 
-    <footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><Brand compact /><p>Soluções digitais sob medida para empresas que querem evoluir.</p></div><div className="footer-links"><div><span className="footer-title">NAVEGAÇÃO</span><a href="#sobre">Sobre</a><a href="#equipe">Equipe</a><a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#tecnologias">Tecnologias</a></div><div><span className="footer-title">CONTATO</span>{siteConfig.email ? <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> : <span className="footer-muted">E-mail a configurar</span>}{siteConfig.instagram ? <a href={siteConfig.instagram} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={12} /></a> : <span className="footer-muted">Instagram a configurar</span>}<a href="#contato">Solicitar orçamento</a></div></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} DMN Tech. Todos os direitos reservados.</span><a href="#privacidade" onClick={(e) => { e.preventDefault(); setPrivacyOpen(true) }}>Privacidade</a></div></footer>
+    <footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><Brand compact /><p>Soluções digitais sob medida para empresas que querem evoluir.</p></div><div className="footer-links"><div><span className="footer-title">NAVEGAÇÃO</span><a href="#sobre">Sobre</a><a href="#equipe">Equipe</a><a href="/servicos">Serviços técnicos</a><a href="#projetos">Projetos</a><a href="#tecnologias">Tecnologias</a></div><div><span className="footer-title">CONTATO</span>{siteConfig.email ? <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> : <span className="footer-muted">E-mail a configurar</span>}{siteConfig.instagram ? <a href={siteConfig.instagram} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={12} /></a> : <span className="footer-muted">Instagram a configurar</span>}<a href="#contato">Solicitar orçamento</a></div></div></div><div className="container footer-bottom"><span>© {new Date().getFullYear()} DMN Tech. Todos os direitos reservados.</span><a href="#privacidade" onClick={(e) => { e.preventDefault(); setPrivacyOpen(true) }}>Privacidade</a></div></footer>
     {privacyOpen && <div className="privacy-backdrop" onClick={() => setPrivacyOpen(false)}><section id="privacidade" className="privacy-popover" role="dialog" aria-modal="true" aria-labelledby="privacy-title" onClick={(event) => event.stopPropagation()}><button onClick={() => setPrivacyOpen(false)} aria-label="Fechar"><X size={16} /></button><h3 id="privacy-title">Privacidade</h3><p>Os dados enviados pelo formulário são usados somente para responder à sua solicitação. A política completa será publicada quando os canais e processos de atendimento da DMN Tech forem definidos.</p></section></div>}
     {siteConfig.whatsapp && <a className="whatsapp-float" href={whatsappUrl()} aria-label="Conversar pelo WhatsApp" target="_blank" rel="noreferrer"><MessageCircle size={21} /></a>}
   </>
