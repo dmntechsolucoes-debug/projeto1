@@ -105,11 +105,54 @@ const upcomingDeliverables = [
   },
 ]
 
+const workflowStages = [
+  {
+    title: 'Descoberta',
+    description: 'Entendimento do contexto, dos objetivos e das necessidades da equipe.',
+    details: [
+      'Requisitos, jornadas e fluxos prioritários.',
+      'Premissas, dependências e critérios de aceite.',
+      'Pontos de risco e perguntas a validar com as partes envolvidas.',
+    ],
+  },
+  {
+    title: 'Arquitetura',
+    description: 'Desenho da solução e definição das decisões técnicas relevantes.',
+    details: [
+      'Componentes da solução e responsabilidades.',
+      'Integrações, APIs, dados e controles de acesso.',
+      'Requisitos de operação, segurança e evolução.',
+    ],
+  },
+  {
+    title: 'Desenvolvimento',
+    description: 'Implementação incremental dos fluxos e componentes priorizados.',
+    details: [
+      'Aplicação das regras de negócio e contratos definidos.',
+      'Integrações e tratamento de erros conforme o escopo.',
+      'Código-fonte e documentação técnica prevista no projeto.',
+    ],
+  },
+  {
+    title: 'Validação',
+    description: 'Verificação dos critérios acordados e preparação para a entrega.',
+    details: [
+      'Revisão dos requisitos e fluxos de maior prioridade.',
+      'Registro dos resultados, limitações e ajustes necessários.',
+      'Orientações de implantação e operação previstas no escopo.',
+    ],
+  },
+]
+
 function ServicesPage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [privacyOpen, setPrivacyOpen] = useState(false)
+  const [selectedServiceId, setSelectedServiceId] = useState(technicalServices[0].id)
+  const [selectedStageIndex, setSelectedStageIndex] = useState(1)
   const closeMenu = () => setMenuOpen(false)
-  const contactHref = whatsappUrl() || '/#contato'
+  const selectedService = technicalServices.find((service) => service.id === selectedServiceId) ?? technicalServices[0]
+  const selectedStage = workflowStages[selectedStageIndex]
+  const contactHref = whatsappUrl(`Olá! Gostaria de conversar sobre ${selectedService.title}.`) || '/#contato'
 
   return (
     <div className="services-page">
@@ -143,6 +186,88 @@ function ServicesPage() {
               <a className="button button-primary" href={contactHref} target={siteConfig.whatsapp ? '_blank' : undefined} rel={siteConfig.whatsapp ? 'noreferrer' : undefined}>Conversar sobre um projeto <ArrowUpRight size={16} /></a>
               <a className="services-text-link" href="#entregaveis">Ver área de entregáveis <ArrowRight size={15} /></a>
             </div>
+          </div>
+        </section>
+
+        <section className="section interactive-project-section" aria-label="Planejamento interativo de projeto">
+          <div className="container interactive-project-grid">
+            <article className="interactive-panel project-configurator">
+              <span className="services-section-kicker">CONFIGURADOR DE PROJETO</span>
+              <h2>Comece pelo desafio <span className="gradient-text">da sua equipe.</span></h2>
+              <p className="interactive-panel-intro">Escolha uma frente técnica para ver exemplos de itens que podem compor o escopo.</p>
+
+              <div className="project-service-options" role="group" aria-label="Selecione uma frente técnica">
+                {technicalServices.map((service) => {
+                  const Icon = service.icon
+                  const isSelected = service.id === selectedServiceId
+                  return (
+                    <button
+                      className={`project-service-option${isSelected ? ' is-selected' : ''}`}
+                      type="button"
+                      key={service.id}
+                      aria-pressed={isSelected}
+                      onClick={() => setSelectedServiceId(service.id)}
+                    >
+                      <Icon size={19} strokeWidth={1.8} />
+                      <span>{service.category === 'ENGENHARIA DE SOFTWARE' ? 'Aplicações web' : service.category === 'INTEGRAÇÃO DE SISTEMAS' ? 'Integrações' : 'Dados e analytics'}</span>
+                      <small>{service.number}</small>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="project-scope-card" aria-live="polite">
+                <div className="project-scope-heading">
+                  <div><span>ESCOPO SUGERIDO</span><h3>{selectedService.title}</h3></div>
+                  <span className="scope-status">A definir</span>
+                </div>
+                <ul>
+                  {selectedService.outputs.map((output) => (
+                    <li key={output}><FileText size={16} /><span>{output}</span></li>
+                  ))}
+                </ul>
+              </div>
+
+              <a className="button button-primary project-configurator-cta" href={contactHref} target={siteConfig.whatsapp ? '_blank' : undefined} rel={siteConfig.whatsapp ? 'noreferrer' : undefined}>
+                Conversar sobre este projeto <ArrowUpRight size={16} />
+              </a>
+              <p className="project-scope-note">Sugestões iniciais; escopo, prioridades e entregáveis são definidos em conjunto.</p>
+            </article>
+
+            <article className="interactive-panel delivery-timeline-panel">
+              <span className="services-section-kicker">ETAPAS E ENTREGÁVEIS</span>
+              <h2>Veja como o trabalho <span className="gradient-text">pode avançar.</span></h2>
+              <p className="interactive-panel-intro">Selecione uma etapa para conhecer os tópicos técnicos que podem ser tratados.</p>
+
+              <div className="workflow-stage-tabs" role="group" aria-label="Selecione uma etapa do projeto">
+                {workflowStages.map((stage, index) => {
+                  const isSelected = index === selectedStageIndex
+                  const isComplete = index < selectedStageIndex
+                  return (
+                    <button
+                      className={`workflow-stage-tab${isSelected ? ' is-selected' : ''}${isComplete ? ' is-complete' : ''}`}
+                      type="button"
+                      aria-pressed={isSelected}
+                      key={stage.title}
+                      onClick={() => setSelectedStageIndex(index)}
+                    >
+                      <span className="workflow-stage-number">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="workflow-stage-name">{stage.title}</span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="workflow-stage-content" aria-live="polite" aria-atomic="true">
+                <span className="workflow-stage-kicker">ETAPA {String(selectedStageIndex + 1).padStart(2, '0')}</span>
+                <h3>{selectedStage.title}</h3>
+                <p>{selectedStage.description}</p>
+                <ul>
+                  {selectedStage.details.map((detail) => <li key={detail}><Check size={15} /><span>{detail}</span></li>)}
+                </ul>
+              </div>
+              <p className="timeline-disclaimer">As etapas são referências de processo e variam conforme o escopo contratado.</p>
+            </article>
           </div>
         </section>
 
